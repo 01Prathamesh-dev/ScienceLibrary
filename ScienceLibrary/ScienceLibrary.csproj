@@ -8,12 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BiologyLibrary\BiologyLibrary.csproj" />
-    <ProjectReference Include="..\ChemistryLibrary\ChemistryLibrary.csproj" />
-    <ProjectReference Include="..\PhysicsLibrary\PhysicsLibrary.csproj" />
-    <!-- <PackageReference Include="BiologyLibrary.Prod" Version="1.0.0.*" /> -->
-    <!-- <PackageReference Include="ChemistryLibrary.Prod" Version="1.0.0.*" /> -->
-    <!-- <PackageReference Include="PhysicsLibrary.Prod" Version="1.0.0.*" /> -->
+    <!-- <ProjectReference Include="..\BiologyLibrary\BiologyLibrary.csproj" /> -->
+    <!-- <ProjectReference Include="..\ChemistryLibrary\ChemistryLibrary.csproj" /> -->
+    <!-- <ProjectReference Include="..\PhysicsLibrary\PhysicsLibrary.csproj" /> -->
+    <PackageReference Include="BiologyLibrary.Prod" Version="1.0.0.*" />
+    <PackageReference Include="ChemistryLibrary.Prod" Version="1.0.0.*" />
+    <PackageReference Include="PhysicsLibrary.Prod" Version="1.0.0.*" />
   </ItemGroup>
 
 </Project>
