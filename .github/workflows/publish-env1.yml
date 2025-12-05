@@ -23,6 +23,10 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Inject GitHub Token into nuget.config
+        run: |
+          sed -i "s/%GITHUB_TOKEN%/${{ secrets.LIB_ENV1 }}/g" nuget.config
+
       - name: Restore
         run: dotnet restore --configfile nuget.config
 
@@ -39,10 +43,11 @@ jobs:
         run: dotnet pack ./PhysicsLibrary/PhysicsLibrary.csproj -c Release -o ./output -p:PackageId=PhysicsLibrary.env1 -p:PackageVersion=1.0.0-env1.${{ github.run_number }}
 
       - name: Pack Science (env1)
-        run: dotnet pack ./ScienceLibrary/ScienceLibrary.csproj -c Release -o  ./output --no-build -p:PackageId=ScienceLibrary.env1 -p:PackageVersion=1.0.0-env1.${{ github.run_number }}
+        run: dotnet pack ./ScienceLibrary/ScienceLibrary.csproj -c Release -o  ./output -p:PackageId=ScienceLibrary.env1 -p:PackageVersion=1.0.0-env1.${{ github.run_number }}
 
       - name: Publish packages to GitHub Packages
         run: dotnet nuget push "./output/*.nupkg" -k "${{ secrets.LIB_ENV1 }}" -s "https://nuget.pkg.github.com/01Prathamesh-dev/index.json" --skip-duplicate
+
 
 
 
