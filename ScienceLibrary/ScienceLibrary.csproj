@@ -11,9 +11,9 @@
     <!-- <ProjectReference Include="..\BiologyLibrary\BiologyLibrary.csproj" /> -->
     <!-- <ProjectReference Include="..\ChemistryLibrary\ChemistryLibrary.csproj" /> -->
     <!-- <ProjectReference Include="..\PhysicsLibrary\PhysicsLibrary.csproj" /> -->
-    <PackageReference Include="BiologyLibrary.Env1" Version="1.0.0.*" />
-    <PackageReference Include="ChemistryLibrary.Env1" Version="1.0.0.*" />
-    <PackageReference Include="PhysicsLibrary.Env1" Version="1.0.0.*" />
+    <PackageReference Include="BiologyLibrary.Env1" Version="1.0.0-env1.*" />
+    <PackageReference Include="ChemistryLibrary.Env1" Version="1.0.0-env1.*" />
+    <PackageReference Include="PhysicsLibrary.Env1" Version="1.0.0-env1.*" />
   </ItemGroup>
 
 </Project>
