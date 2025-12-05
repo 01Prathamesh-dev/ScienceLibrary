@@ -2,7 +2,7 @@ name: Publish Prod Packages
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
 
 permissions:
   contents: read
@@ -15,20 +15,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "8.0.x"
 
-      - name: Restore
+      # FIRST RESTORE (ProjectReferences only)
+      - name: Restore (Phase 1)
         run: dotnet restore --configfile nuget.config
 
       - name: Build
         run: dotnet build --configuration Release --no-restore
 
+      # PACK INDIVIDUAL LIBRARIES
       - name: Pack Biology (prod)
         run: dotnet pack "./BiologyLibrary/BiologyLibrary.csproj" -c Release -o "./output" -p:PackageId=BiologyLibrary.Prod -p:PackageVersion=1.0.0.${{ github.run_number }}
 
@@ -38,12 +38,18 @@ jobs:
       - name: Pack Physics (prod)
         run: dotnet pack "./PhysicsLibrary/PhysicsLibrary.csproj" -c Release -o "./output" -p:PackageId=PhysicsLibrary.Prod -p:PackageVersion=1.0.0.${{ github.run_number }}
 
+      # PUSH DEPENDENCIES FIRST
+      - name: Publish Base Packages to GitHub
+        run: dotnet nuget push "./output/*Library.Prod*.nupkg" -k "${{ secrets.LIB_PROD }}" -s "https://nuget.pkg.github.com/01Prathamesh-dev/index.json" --skip-duplicate
+
+      # SECOND RESTORE (Now packages exist!)
+      - name: Restore (Phase 2)
+        run: dotnet restore --configfile nuget.config
+
+      # PACK SCIENCE LIBRARY (Now it can download dependencies)
       - name: Pack Science (prod)
         run: dotnet pack "./ScienceLibrary/ScienceLibrary.csproj" -c Release -o "./output" -p:PackageId=ScienceLibrary.Prod -p:PackageVersion=1.0.0.${{ github.run_number }}
 
-      - name: Publish to GitHub Packages
-        run: dotnet nuget push "./output/*.nupkg" -k "${{ secrets.LIB_PROD }}" -s "https://nuget.pkg.github.com/01Prathamesh-dev/index.json" --skip-duplicate
-
-
-
-
+      # PUBLISH SCIENCE PACKAGE
+      - name: Publish ScienceLibrary
+        run: dotnet nuget push "./output/ScienceLibrary*.nupkg" -k "${{ secrets.LIB_PROD }}" -s "https://nuget.pkg.github.com/01Prathamesh-dev/index.json" --skip-duplicate
