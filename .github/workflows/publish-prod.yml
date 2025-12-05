@@ -11,6 +11,7 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: prod
 
     steps:
       - uses: actions/checkout@v4
@@ -42,3 +43,4 @@ jobs:
 
       - name: Publish to GitHub Packages
         run: dotnet nuget push "./output/*.nupkg" -k "${{ secrets.LIB_PROD }}" -s "https://nuget.pkg.github.com/01Prathamesh-dev/index.json" --skip-duplicate
+
