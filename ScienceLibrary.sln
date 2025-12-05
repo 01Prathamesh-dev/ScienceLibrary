@@ -16,6 +16,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{7FA3BB7B-365F-44C7-8DBC-EDB955A2E438}"
+	ProjectSection(SolutionItems) = preProject
+		publish-prod.yml = publish-prod.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +48,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{7FA3BB7B-365F-44C7-8DBC-EDB955A2E438} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88BD5494-2FF8-48BF-B05F-099B6C7A43AB}
