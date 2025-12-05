@@ -15,5 +15,10 @@ namespace ScienceLibrary
             Object [] fields = { "Science has : ", physics.GetField(), biology.GetField(), chemistry.GetField() };
             return fields;
         }
+
+        public string GotId()
+        {
+            return "Checking that ScienceLibrary is updating or not..!!";
+        }
     }
 }
