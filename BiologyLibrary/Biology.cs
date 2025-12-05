@@ -6,5 +6,10 @@
         {
             return "Biology";
         }
+
+        public string Talk()
+        {
+            return "India is my country.";
+        }
     }
 }
